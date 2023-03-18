@@ -25,7 +25,7 @@ export default class SearchBar extends Component<IProps, IState> {
   render() {
     return (
       <div className="search-bar-section">
-        <div className="container search-bar__wrapper">
+        <div className="container centralize search-bar__wrapper">
           <p className="search-bar__title">Go ahead, hover over search</p>
           <form className="search-bar">
             <input

@@ -5,7 +5,7 @@ export default class Hearder extends Component {
   render() {
     return (
       <header className="header">
-        <div className="container header__wrapper">
+        <div className="container centralize header__wrapper">
           <a className="logo">Logo</a>
           <ul className="menu">
             <li className="menu__item">

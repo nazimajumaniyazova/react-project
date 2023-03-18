@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-
+import './NotFound.css';
 export default class NotFound extends Component {
   render() {
     return (
-      <div>
+      <div className="centralize not-found">
         <h1>Oops!</h1>
-        <p>Sorry, an unexpected error has occurred.</p>
-        <p>{/* <i>{this.error.statusText || this.error.message}</i> */}</p>
+        <p>Page Not Found</p>
       </div>
     );
   }

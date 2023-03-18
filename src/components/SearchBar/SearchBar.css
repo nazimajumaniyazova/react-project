@@ -1,15 +1,7 @@
 .search-bar-section {
   background-color: #eee;
 }
-.container {
-  max-width: 1110px;
-  margin: 0 auto;
-  padding: 0 10px;
-}
 .search-bar__wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 30vh;
 }
 .search-bar__title {
