@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Header.css';
 export default class Hearder extends Component {
   render() {
@@ -9,14 +9,14 @@ export default class Hearder extends Component {
           <a className="logo">Logo</a>
           <ul className="menu">
             <li className="menu__item">
-              <Link to={`/`} className="menu__link menu__link_active">
+              <NavLink to={`/`} className="menu__link">
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li className="menu__item">
-              <Link to={`about-us/`} className="menu__link">
+              <NavLink to={`about-us/`} className="menu__link">
                 About Us
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>

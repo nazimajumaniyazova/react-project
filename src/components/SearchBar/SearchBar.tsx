@@ -20,7 +20,6 @@ export default class SearchBar extends Component<IProps, IState> {
     this.setState({ value: event.target.value });
   };
   componentWillUnmount() {
-    console.log('dd');
     localStorage.setItem('inputValue', JSON.stringify(this.state));
   }
   render() {

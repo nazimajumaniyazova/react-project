@@ -18,6 +18,10 @@
 }
 .menu__link {
   text-decoration: none;
+  transition: all 0.3s ease;
 }
-.menu__link_active {
+.menu__link.active {
+  transition: all 0.3s ease;
+  color: black;
+  border-bottom: 1px solid black;
 }
