@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/nazimajumaniyazova/react-project/static/css/main.a1a3bfeb.css",
+    "main.js": "/nazimajumaniyazova/react-project/static/js/main.71d83057.js",
+    "static/js/787.a2bf511c.chunk.js": "/nazimajumaniyazova/react-project/static/js/787.a2bf511c.chunk.js",
+    "index.html": "/nazimajumaniyazova/react-project/index.html",
+    "main.a1a3bfeb.css.map": "/nazimajumaniyazova/react-project/static/css/main.a1a3bfeb.css.map",
+    "main.71d83057.js.map": "/nazimajumaniyazova/react-project/static/js/main.71d83057.js.map",
+    "787.a2bf511c.chunk.js.map": "/nazimajumaniyazova/react-project/static/js/787.a2bf511c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a1a3bfeb.css",
+    "static/js/main.71d83057.js"
+  ]
+}
