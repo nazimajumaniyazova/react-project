@@ -1,18 +1,23 @@
 .search-bar-section {
   background-color: #eee;
+  padding: 10px 0;
 }
 .search-bar__wrapper {
   min-height: 30vh;
+  flex-wrap: wrap;
 }
 .search-bar__title {
   flex: 1;
+  min-width: 200px;
+  max-width: 30%;
 }
 .search-bar {
   flex: 1;
-  width: 100%;
+  min-width: 300px;
+  width: 50%;
 }
 .search-bar__input {
-  width: 100%;
+  width: 80%;
   padding: 12px 24px;
 
   background-color: transparent;
