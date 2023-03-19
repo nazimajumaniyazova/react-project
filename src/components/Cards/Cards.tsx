@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import Card from '../Card/Card';
 import './Cards.css';
-interface ICard {
-  imgUrl: string;
-  name: string;
-  date: string;
-  score: number;
-}
-
 const cards = [
   {
     id: 1,
