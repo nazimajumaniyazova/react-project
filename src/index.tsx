@@ -5,8 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import NotFound from './pages/NotFound/NotFound';
-import About from './pages/About';
-import Home from './pages/Home';
+import About from './pages/About/About';
+import Home from './pages/Home/Home';
 const router = createBrowserRouter([
   {
     path: '/',

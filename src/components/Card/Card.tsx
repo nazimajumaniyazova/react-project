@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Card.css';
 
-interface ICard {
+export interface ICard {
   imgUrl: string;
   name: string;
   date: string;
