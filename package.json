@@ -71,7 +71,6 @@
     "collectCoverageFrom": [
       "!src/pages/Home/Home.tsx",
       "!src/components/SearchBar/SearchBar.tsx",
-      "!src/components/Cards/Cards.tsx",
       "!src/index.tsx",
       "!src/reportWebVitals.ts"
      ]
