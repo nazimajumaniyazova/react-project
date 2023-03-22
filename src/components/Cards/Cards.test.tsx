@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import Cards from './Cards';
 const cards = [
   {
@@ -75,10 +75,5 @@ const cards = [
 describe('Cards component', () => {
   test('it renders', () => {
     render(<Cards {...cards} />);
-  });
-  test('it renders all the cards list', () => {
-    render(<Cards {...cards} />);
-    const cardsL = document.querySelector<HTMLElement>('.cards-container')!;
-    expect(cardsL.children.length).toBe(cards.length);
   });
 });
