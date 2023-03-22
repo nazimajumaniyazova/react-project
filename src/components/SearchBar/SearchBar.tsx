@@ -9,10 +9,16 @@ interface IState {
   value: string;
 }
 export default class SearchBar extends Component<IProps, IState> {
+  valueLocal: string | null;
   constructor(props: IProps) {
     super(props);
+    this.valueLocal = localStorage.getItem('inputValue');
+    if (!this.valueLocal) {
+      this.valueLocal = ' ';
+    }
+    console.log(this.valueLocal);
     this.state = {
-      value: JSON.parse(localStorage.getItem('inputValue')!).value || '',
+      value: this.valueLocal,
     };
   }
   onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +26,7 @@ export default class SearchBar extends Component<IProps, IState> {
     this.setState({ value: event.target.value });
   };
   componentWillUnmount() {
-    localStorage.setItem('inputValue', JSON.stringify(this.state));
+    localStorage.setItem('inputValue', this.state.value);
   }
   render() {
     return (
