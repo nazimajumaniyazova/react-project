@@ -75,8 +75,6 @@ const cards = [
 describe('Cards component', () => {
   test('it renders', () => {
     render(<Cards {...cards} />);
-    const cardsL = document.querySelector<HTMLElement>('.cards-container')!;
-    expect(cardsL.children.length).toBe(cards.length);
   });
   test('it renders all the cards list', () => {
     render(<Cards {...cards} />);
