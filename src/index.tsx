@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import NotFound from './pages/NotFound/NotFound';
 import About from './pages/About/About';
 import Home from './pages/Home/Home';
+import FormPage from './pages/FormPage/FormPage';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: 'forms/',
+        element: <FormPage />,
       },
     ],
   },

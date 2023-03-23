@@ -18,6 +18,11 @@ export default class Hearder extends Component {
                 About Us
               </NavLink>
             </li>
+            <li className="menu__item">
+              <NavLink to={`forms/`} className="menu__link">
+                Forms
+              </NavLink>
+            </li>
           </ul>
         </div>
       </header>
