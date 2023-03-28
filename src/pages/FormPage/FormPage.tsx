@@ -77,9 +77,16 @@ export default class FormPage extends Component<IProps, ISubmitInfo> {
   render() {
     return (
       <>
+        <h2>Let&apos;s make the list of your favorite movies</h2>
         <form onSubmit={this.handleFormSubmit}>
-          <input type="text" placeholder="Enter name" ref={this.nameRef} />
-          <input type="date" ref={this.dateRef} />
+          <div>
+            <label htmlFor="name">Enter movie name:</label>
+            <input type="text" placeholder="Enter name" ref={this.nameRef} id="name" />
+          </div>
+          <div>
+            <label htmlFor="date">Enter movie date: </label>
+            <input type="date" ref={this.dateRef} id="date" />
+          </div>
           <select name="selectedFruit" ref={this.selectRef}>
             <option value="apple">Apple</option>
             <option value="banana">Banana</option>
