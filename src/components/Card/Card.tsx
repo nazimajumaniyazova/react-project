@@ -2,6 +2,7 @@ import React from 'react';
 import './Card.css';
 
 export interface ICard {
+  id: number;
   imgUrl: string;
   name: string;
   date: string;

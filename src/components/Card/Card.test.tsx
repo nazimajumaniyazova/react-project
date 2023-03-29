@@ -3,12 +3,14 @@ import Card, { ICard } from './Card';
 
 const testCards: Array<ICard> = [
   {
+    id: 1,
     imgUrl: 'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/kuf6dutpsT0vSVehic3EZIqkOBt.jpg',
     name: 'Puss in Boots: The Last Wish',
     date: 'Dec 07, 2022',
     score: '84%',
   },
   {
+    id: 2,
     imgUrl: 'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/x3PIk93PTbxT88ohfeb26L1VpZw.jpg',
     name: 'Prizefighter: The Life of Jem Belcher',
     date: 'Jun 30, 2022',

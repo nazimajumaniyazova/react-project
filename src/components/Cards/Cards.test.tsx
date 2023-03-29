@@ -74,6 +74,6 @@ const cards = [
 ];
 describe('Cards component', () => {
   test('it renders', () => {
-    render(<Cards {...cards} />);
+    render(<Cards />);
   });
 });

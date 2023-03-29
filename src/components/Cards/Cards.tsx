@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Card from '../Card/Card';
 import './Cards.css';
-const cards = [
+import { ICard } from '../Card/Card';
+const cards: Array<ICard> = [
   {
     id: 1,
     imgUrl: 'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/x3PIk93PTbxT88ohfeb26L1VpZw.jpg',
@@ -73,20 +74,21 @@ const cards = [
     score: '78%',
   },
 ];
-export default class Cards extends Component {
-  render() {
-    return (
-      <div className="cards-section">
-        <div className="container">
-          <ul className="cards-container">
-            {cards.map((card) => (
-              <li key={card.id}>
-                <Card {...card} />
-              </li>
-            ))}
-          </ul>
-        </div>
+
+function Cards() {
+  return (
+    <div className="cards-section">
+      <div className="container">
+        <ul className="cards-container">
+          {cards.map((card) => (
+            <li key={card.id}>
+              <Card {...card} />
+            </li>
+          ))}
+        </ul>
       </div>
-    );
-  }
+    </div>
+  );
 }
+
+export default Cards;
