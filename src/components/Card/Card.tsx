@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Card.css';
 
 export interface ICard {
@@ -8,22 +8,19 @@ export interface ICard {
   score: string;
 }
 
-export default class Card extends Component<ICard> {
-  constructor(props: ICard) {
-    super(props);
-  }
-  render() {
-    return (
-      <div className="card">
-        <div className="card-img">
-          <img src={this.props.imgUrl} alt={this.props.name} className="card-img__image" />
-        </div>
-        <div className="card-info">
-          <p className="card-name">{this.props.name}</p>
-          <p className="card-date">{this.props.date}</p>
-          <p className="card-score">Score: {this.props.score}</p>
-        </div>
+function Card({ imgUrl, name, date, score }: ICard) {
+  return (
+    <div className="card">
+      <div className="card-img">
+        <img src={imgUrl} alt={name} className="card-img__image" />
       </div>
-    );
-  }
+      <div className="card-info">
+        <p className="card-name">{name}</p>
+        <p className="card-date">{date}</p>
+        <p className="card-score">Score: {score}</p>
+      </div>
+    </div>
+  );
 }
+
+export default Card;
