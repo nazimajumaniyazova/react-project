@@ -1,0 +1,206 @@
+.form-page {
+  margin-top: 50px;
+}
+.form-title {
+  margin-bottom: 15px;
+  color: rgba(0, 0, 0, 0.8);
+}
+.form {
+  width: 35em;
+  max-width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.form input {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  height: 38px;
+  line-height: 38px;
+  padding-left: 5px;
+  outline: none;
+  width: 176px;
+  width: 100%;
+}
+input:focus {
+  outline: 0;
+  border-color: #2b3a55;
+}
+input:focus + .input-icon i {
+  color: #2b3a55;
+}
+input:focus + .input-icon:after {
+  border-right-color: #2b3a55;
+}
+label {
+  color: rgba(0, 0, 0, 0.8);
+  display: block;
+  margin-bottom: 5px;
+  text-align: start;
+}
+
+.set {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  width: 100%;
+  gap: 20px;
+}
+.set > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+/* Upload Photo */
+.poster .poster-upload-input {
+  width: 0;
+  height: 0;
+  font-size: 0;
+  border: 0;
+}
+.form .poster {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-top: 22px;
+}
+.poster .poster-upload-icon {
+  border-radius: 50%;
+  height: 38px;
+  margin-right: 10px;
+  outline: none;
+  width: 38px;
+  background-color: rgb(240, 240, 240);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.poster-upload-label {
+  display: flex;
+  align-items: center;
+}
+.poster .poster-upload-icon i {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 16px;
+}
+
+/* Radio Container */
+.radio-container {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  display: inline-block;
+  padding: 5px;
+}
+.radio-container label {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  transition: 0.2s all ease-in-out;
+  width: 80px;
+}
+.radio-container input[type='radio'] {
+  display: none;
+}
+.radio-container input[type='radio']:checked + label {
+  background: #ced4da;
+  background: rgb(240, 240, 240);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* Checkboxes */
+/* .checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+}
+.form .checkbox-input {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.form .checkbox-input + label {
+  font: inherit;
+  line-height: normal;
+  width: 100%;
+  box-sizing: border-box;
+  background: #222222;
+  color: white;
+  position: relative;
+}
+.form .checkbox-input + label:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #111111 inset;
+  -webkit-text-fill-color: white;
+  border-top-color: #111111;
+  border-left-color: #111111;
+  border-right-color: #111111;
+}
+.checkbox-input:checked + label {
+  color: white;
+} */
+.set-checkbox {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+.checkboxes {
+  border: 1px solid rgb(240, 240, 240);
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.checkbox {
+  flex: 1;
+}
+.checkbox .checkbox-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkbox-label {
+  text-align: center;
+  padding: 5px;
+  margin: 0;
+  border-right: 1px solid rgb(240, 240, 240);
+}
+.checkbox .checkbox-input:checked + label {
+  background: rgb(240, 240, 240);
+}
+/* Select */
+
+.countries select {
+  width: 50%;
+  border: 1px solid rgb(240, 240, 240);
+  height: 38px;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+/* Button Save */
+.btn-save {
+  width: 100%;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: rgb(240, 240, 240);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}

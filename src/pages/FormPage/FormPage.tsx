@@ -1,129 +1,165 @@
-// import React, { useRef, useState } from 'react';
-
-// function FormPage() {
-//   const nameRef = useRef<HTMLInputElement>(null);
-//   const [name, setName] = useState('');
-//   function handleSumbit(event: React.FormEvent) {
-//     event.preventDefault();
-//     setName(nameRef.current!.value);
-//     console.log('done');
-//   }
-//   return (
-//     <div>
-//       <form>
-//         <input type="text" placeholder="Enter Name" ref={nameRef} />
-//         <button type="submit" onClick={handleSumbit}>
-//           Submit
-//         </button>
-//       </form>
-//       {name && <p>{name}</p>}
-//     </div>
-//   );
-// }
-
-// export default FormPage;
-
-import React, { Component, createRef } from 'react';
-
-interface IProps {
-  smth?: string;
+import './FormPage.css';
+import { useForm } from 'react-hook-form';
+const countries = [
+  'USA',
+  'UK',
+  'India',
+  'Turkey',
+  'France',
+  'German',
+  'Russia',
+  'Korea',
+  'Japan',
+  'Austria',
+];
+interface Idata {
+  name: string;
+  date: string;
+  country: string;
+  status: string;
+  genres: Array<string>;
+  image: string;
 }
-interface Tes {
-  name: string | undefined;
-  date: string | undefined;
-  select: string | undefined;
-}
-interface ISubmitInfo {
-  arr: Array<Tes>;
-}
-const items = ['One', 'Two', 'Three'];
-export default class FormPage extends Component<IProps, ISubmitInfo> {
-  private nameRef;
-  private dateRef;
-  private selectRef;
-  private checkboxRef;
-
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      arr: [
-        {
-          name: 'вв',
-          date: 'dd',
-          select: 'm',
-        },
-      ],
-    };
-    this.nameRef = createRef<HTMLInputElement>();
-    this.dateRef = createRef<HTMLInputElement>();
-    this.selectRef = createRef<HTMLSelectElement>();
-    this.checkboxRef = createRef<HTMLInputElement>();
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-  }
-  handleFormSubmit(event: React.FormEvent) {
-    event.preventDefault();
-    const theLocations = this.state.arr.map((l) => Object.assign({}, l));
-    console.log(this.checkboxRef);
-    theLocations.push({
-      name: this.nameRef.current?.value,
-      date: this.dateRef.current?.value,
-      select: this.selectRef.current?.value,
-    });
-    this.setState({ arr: theLocations });
-    if (this.nameRef.current != undefined) {
-      this.nameRef.current.value = '';
-    }
-  }
-  render() {
-    return (
-      <>
-        <h2>Let&apos;s make the list of your favorite movies</h2>
-        <form onSubmit={this.handleFormSubmit}>
-          <div>
-            <label htmlFor="name">Enter movie name:</label>
-            <input type="text" placeholder="Enter name" ref={this.nameRef} id="name" />
+function FormPage() {
+  const { register, handleSubmit } = useForm<Idata>();
+  const onSubmit = (data: Idata) => console.log(data);
+  return (
+    <div className="form-page">
+      <h2 className="form-title">Save your favourite movie</h2>
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
+        <div className="set">
+          <div className="name">
+            <label htmlFor="m-name">Name</label>
+            <input type="text" id="m-name" {...register('name')} />
           </div>
-          <div>
-            <label htmlFor="date">Enter movie date: </label>
-            <input type="date" ref={this.dateRef} id="date" />
-          </div>
-          <select name="selectedFruit" ref={this.selectRef}>
-            <option value="apple">Apple</option>
-            <option value="banana">Banana</option>
-            <option value="orange">Orange</option>
-          </select>
-          {items.map((item, index) => (
-            <label htmlFor={item} key={index}>
-              <input type="checkbox" id={item} ref={this.checkboxRef} />
-              <span>{item}</span>
+          <div className="poster">
+            <input
+              type="file"
+              accept="image/*"
+              id="poster-upload"
+              className="poster-upload-input"
+              {...register('image')}
+            />
+            <label htmlFor="poster-upload" className="poster-upload-label">
+              <span className="poster-upload-icon">
+                <i className="fas fa-camera-retro"></i>
+              </span>
+              Upload a poster
             </label>
-          ))}
-          <fieldset>
-            <legend>Choose your favorite monster</legend>
-
-            <input type="radio" id="kraken" name="monster" value="K" />
-            <label htmlFor="kraken">Kraken</label>
-            <br />
-
-            <input type="radio" id="sasquatch" name="monster" value="S" />
-            <label htmlFor="sasquatch">Sasquatch</label>
-            <br />
-
-            <input type="radio" id="mothman" name="monster" value="M" />
-            <label htmlFor="mothman">Mothman</label>
-          </fieldset>
-          <button type="submit">Submit</button>
-        </form>
-        {this.state.arr.length > 1
-          ? this.state.arr.map((item, index) => (
-              <div key={index}>
-                <li>{item.name}</li>
-                <li>{item.date}</li>
-                <li>{item.select}</li>
-              </div>
-            ))
-          : ''}
-      </>
-    );
-  }
+          </div>
+        </div>
+        <div className="set">
+          <div className="date">
+            <label htmlFor="m-date">Premiere date</label>
+            <input id="m-date" placeholder="MM/DD/YYYY" type="date" {...register('date')} />
+          </div>
+          <div className="status">
+            <label htmlFor="status-released">Status</label>
+            <div className="radio-container">
+              <input id="status-released" type="radio" value="Released" {...register('status')} />
+              <label htmlFor="status-released">Released</label>
+              <input id="status-upcoming" type="radio" value="Upcoming" {...register('status')} />
+              <label htmlFor="status-upcoming">Upcoming</label>
+            </div>
+          </div>
+        </div>
+        <div className="set set-checkbox">
+          <label className="label">Genres</label>
+          <ul className="checkboxes">
+            <li className="checkbox">
+              <input
+                className="checkbox-input"
+                id="choice-0"
+                type="checkbox"
+                value="comedy"
+                {...register('genres')}
+              />
+              <label className="checkbox-label" htmlFor="choice-0">
+                Comedy
+              </label>
+            </li>
+            <li className="checkbox">
+              <input
+                className="checkbox-input"
+                id="choice-1"
+                type="checkbox"
+                value="drama"
+                {...register('genres')}
+              />
+              <label className="checkbox-label" htmlFor="choice-1">
+                Drama
+              </label>
+            </li>
+            <li className="checkbox">
+              <input
+                className="checkbox-input"
+                id="choice-2"
+                type="checkbox"
+                value="fantasy"
+                {...register('genres')}
+              />
+              <label className="checkbox-label" htmlFor="choice-2">
+                Fantasy
+              </label>
+            </li>
+            <li className="checkbox">
+              <input
+                className="checkbox-input"
+                id="choice-3"
+                type="checkbox"
+                value="horror"
+                {...register('genres')}
+              />
+              <label className="checkbox-label" htmlFor="choice-3">
+                Horror
+              </label>
+            </li>
+            <li className="checkbox">
+              <input
+                className="checkbox-input"
+                id="choice-4"
+                type="checkbox"
+                value="romance"
+                {...register('genres')}
+              />
+              <label className="checkbox-label" htmlFor="choice-4">
+                Romance
+              </label>
+            </li>
+            <li className="checkbox">
+              <input
+                className="checkbox-input"
+                id="choice-5"
+                type="checkbox"
+                value="thriller"
+                {...register('genres')}
+              />
+              <label className="checkbox-label" htmlFor="choice-5">
+                Thriller
+              </label>
+            </li>
+          </ul>
+        </div>
+        <div className="set">
+          <div className="countries">
+            <label htmlFor="country">Country</label>
+            <select id="country" {...register('country')}>
+              {countries.sort().map((item, index) => (
+                <option value={item} key={index}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <div className="set">
+          <button type="submit" className="btn-save">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 }
+
+export default FormPage;

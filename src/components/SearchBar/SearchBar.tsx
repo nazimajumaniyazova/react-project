@@ -12,6 +12,13 @@ function SearchBar() {
     localStorage.setItem('searchV', event.target.value);
     setSearchValue(event.target.value);
   };
+
+  // solution with useEffect
+
+  // useEffect(() => {
+  //   const saved = localStorage.getItem('searchV') || '';
+  //   setSearchValue(saved);
+  // }, [searchValue]);
   return (
     <div className="search-bar-section">
       <div className="container centralize search-bar__wrapper">
