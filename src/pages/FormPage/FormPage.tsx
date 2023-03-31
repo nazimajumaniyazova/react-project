@@ -1,6 +1,7 @@
 import './FormPage.css';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
+import { useState } from 'react';
 const countries = [
   'USA',
   'UK',
@@ -25,10 +26,20 @@ function FormPage() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<Idata>();
+
   const onSubmit = (data: Idata) => {
     console.log(data);
+    reset({
+      name: '',
+      date: '',
+      country: '',
+      image: '',
+      genres: [],
+      status: '',
+    });
   };
   return (
     <div className="form-page">
