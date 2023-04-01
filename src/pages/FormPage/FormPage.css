@@ -237,3 +237,10 @@ label {
   color: rgba(0, 0, 0, 0.5);
   text-align: start;
 }
+
+/* List */
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}

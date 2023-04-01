@@ -22,7 +22,16 @@ interface Idata {
   genres: Array<string>;
   image: string;
 }
+
 function FormPage() {
+  const [dataUser, setDataUser] = useState<Array<Idata>>([]);
+  const [img, setImg] = useState('');
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setImg(URL.createObjectURL(e.target.files[0]));
+    }
+  };
   const {
     register,
     handleSubmit,
@@ -31,7 +40,9 @@ function FormPage() {
   } = useForm<Idata>();
 
   const onSubmit = (data: Idata) => {
-    console.log(data);
+    data.image = img;
+    const newDataUser = [...dataUser, { ...data }];
+    setDataUser(newDataUser);
     reset({
       name: '',
       date: '',
@@ -76,6 +87,7 @@ function FormPage() {
                 id="poster-upload"
                 className="poster-upload-input"
                 {...register('image', { required: 'This field is required.' })}
+                onChange={handleFileChange}
               />
               <label htmlFor="poster-upload" className="poster-upload-label required">
                 <span className="poster-upload-icon">
@@ -145,7 +157,7 @@ function FormPage() {
                 className="checkbox-input"
                 id="choice-0"
                 type="checkbox"
-                value="comedy"
+                value="Comedy"
                 {...register('genres', { required: 'This field is required.' })}
               />
               <label className="checkbox-label" htmlFor="choice-0">
@@ -157,7 +169,7 @@ function FormPage() {
                 className="checkbox-input"
                 id="choice-1"
                 type="checkbox"
-                value="drama"
+                value="Drama"
                 {...register('genres', { required: 'This field is required.' })}
               />
               <label className="checkbox-label" htmlFor="choice-1">
@@ -169,7 +181,7 @@ function FormPage() {
                 className="checkbox-input"
                 id="choice-2"
                 type="checkbox"
-                value="fantasy"
+                value="Fantasy"
                 {...register('genres', { required: 'This field is required.' })}
               />
               <label className="checkbox-label" htmlFor="choice-2">
@@ -181,7 +193,7 @@ function FormPage() {
                 className="checkbox-input"
                 id="choice-3"
                 type="checkbox"
-                value="horror"
+                value="Horror"
                 {...register('genres', { required: 'This field is required.' })}
               />
               <label className="checkbox-label" htmlFor="choice-3">
@@ -193,7 +205,7 @@ function FormPage() {
                 className="checkbox-input"
                 id="choice-4"
                 type="checkbox"
-                value="romance"
+                value="Romance"
                 {...register('genres', { required: 'This field is required.' })}
               />
               <label className="checkbox-label" htmlFor="choice-4">
@@ -205,7 +217,7 @@ function FormPage() {
                 className="checkbox-input"
                 id="choice-5"
                 type="checkbox"
-                value="thriller"
+                value="Thriller"
                 {...register('genres', { required: 'This field is required.' })}
               />
               <label className="checkbox-label" htmlFor="choice-5">
@@ -251,6 +263,34 @@ function FormPage() {
           </button>
         </div>
       </form>
+
+      <div className="cards-section">
+        <div className="container">
+          <ul className="cards-container">
+            {dataUser.map((item, index) => (
+              <li key={index}>
+                <div className="card">
+                  <div className="card-img">
+                    <img src={item.image} className="card-img__image" />
+                  </div>
+                  <div className="card-info">
+                    <p className="card-name">{item.name}</p>
+                    <p className="card-date">{item.date}</p>
+                    <p className="card-score">Status: {item.status}</p>
+                    <p className="card-score">Country: {item.country}</p>
+                    <p className="card-score genres">
+                      Genre:{' '}
+                      {item.genres.map((i, index) => (
+                        <span key={index}>{i}</span>
+                      ))}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
