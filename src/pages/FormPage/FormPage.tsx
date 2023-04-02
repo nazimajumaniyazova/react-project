@@ -1,7 +1,8 @@
 import './FormPage.css';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import WarningModal from '../../components/Modal/WarningModal';
 const countries = [
   'USA',
   'UK',
@@ -26,6 +27,7 @@ interface Idata {
 function FormPage() {
   const [dataUser, setDataUser] = useState<Array<Idata>>([]);
   const [img, setImg] = useState('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -43,6 +45,7 @@ function FormPage() {
     data.image = img;
     const newDataUser = [...dataUser, { ...data }];
     setDataUser(newDataUser);
+    setIsModalVisible(true);
     reset({
       name: '',
       date: '',
@@ -52,6 +55,11 @@ function FormPage() {
       status: '',
     });
   };
+  useEffect(() => {
+    setTimeout(() => {
+      setIsModalVisible(false);
+    }, 3000);
+  }, [isModalVisible]);
   return (
     <div className="form-page">
       <h2 className="form-title">Save your favourite movie</h2>
@@ -291,6 +299,8 @@ function FormPage() {
           </ul>
         </div>
       </div>
+
+      {isModalVisible ? <WarningModal /> : ''}
     </div>
   );
 }
