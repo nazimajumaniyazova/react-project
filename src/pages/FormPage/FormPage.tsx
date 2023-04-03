@@ -28,10 +28,22 @@ function FormPage() {
   const [dataUser, setDataUser] = useState<Array<Idata>>([]);
   const [img, setImg] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isCorrectFormatFile, setIsCorrectFormatFile] = useState(true);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsCorrectFormatFile(true);
     if (e.target.files) {
-      setImg(URL.createObjectURL(e.target.files[0]));
+      const file = e.target.files[0];
+      if (
+        file.type === 'image/jpeg' ||
+        file.type === 'image/png' ||
+        file.type === 'image/jpg' ||
+        file.type === 'image/svg+xml'
+      ) {
+        setImg(URL.createObjectURL(e.target.files[0]));
+      } else {
+        setIsCorrectFormatFile(false);
+      }
     }
   };
   const {
@@ -42,6 +54,9 @@ function FormPage() {
   } = useForm<Idata>();
 
   const onSubmit = (data: Idata) => {
+    if (!isCorrectFormatFile) {
+      return;
+    }
     data.image = img;
     const newDataUser = [...dataUser, { ...data }];
     setDataUser(newDataUser);
@@ -105,6 +120,7 @@ function FormPage() {
               </label>
             </div>
             <div>
+              {isCorrectFormatFile ? '' : <p className="error-message">Only images allowed</p>}
               <ErrorMessage
                 errors={errors}
                 name="image"
