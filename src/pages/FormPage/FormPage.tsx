@@ -63,7 +63,7 @@ function FormPage() {
   return (
     <div className="form-page">
       <h2 className="form-title">Save your favourite movie</h2>
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
+      <form className="form" onSubmit={handleSubmit(onSubmit)} data-testid="form">
         <div className="set">
           <div className="name">
             <label htmlFor="m-name" className="required">

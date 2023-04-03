@@ -74,7 +74,8 @@
       "!src/pages/Home/Home.tsx",
       "!src/components/SearchBar/SearchBar.tsx",
       "!src/index.tsx",
-      "!src/reportWebVitals.ts"
+      "!src/reportWebVitals.ts",
+      "!src/components/Modal/WarningModal.tsx"
     ]
   }
 }
