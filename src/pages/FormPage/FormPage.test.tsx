@@ -1,5 +1,4 @@
-import { render, waitFor, screen, cleanup } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
+import { render, waitFor, screen, cleanup, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
 import FormPage from './FormPage';
@@ -12,5 +11,13 @@ describe('FormPage component', () => {
     render(<FormPage />);
     const form = await waitFor(() => screen.getByTestId('form'));
     expect(form).toBeInTheDocument();
+  });
+  test('it should show error message when all the fields are not entered', async () => {
+    render(<FormPage />);
+    const buttonElement = screen.getByRole('button');
+    await act(() => userEvent.click(buttonElement));
+    //  await userEvent.click(buttonElement);
+    const alertElement = screen.getByRole('warning');
+    expect(alertElement).toBeInTheDocument();
   });
 });

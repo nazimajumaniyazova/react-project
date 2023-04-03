@@ -317,6 +317,7 @@ function FormPage() {
       </div>
 
       {isModalVisible ? <WarningModal /> : ''}
+      {isModalVisible ? '' : <p role="warning"></p>}
     </div>
   );
 }
