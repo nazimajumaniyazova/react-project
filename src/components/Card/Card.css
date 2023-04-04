@@ -18,6 +18,7 @@
 .card-info > p {
   margin: 0;
   padding: 0;
+  text-align: start;
 }
 .card-name {
   text-align: start;

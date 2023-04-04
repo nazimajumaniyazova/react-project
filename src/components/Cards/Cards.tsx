@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '../Card/Card';
 import './Cards.css';
 import { ICard } from '../Card/Card';
@@ -74,17 +74,43 @@ const cards: Array<ICard> = [
     score: '78%',
   },
 ];
-
+export interface IData {
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  type: string;
+  url: string;
+  image: string;
+  created: string;
+  episode: Array<string>;
+  gender: string;
+  location: { name: string; url: string };
+  origin: { name: string; url: string };
+}
 function Cards() {
+  const [data, setData] = useState<Array<IData>>();
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await fetch(`https://rickandmortyapi.com/api/character`);
+      const data = await result.json();
+      setData(data.results);
+    };
+    fetchData();
+  }, []);
   return (
     <div className="cards-section">
       <div className="container">
         <ul className="cards-container">
-          {cards.map((card) => (
-            <li key={card.id}>
-              <Card {...card} />
-            </li>
-          ))}
+          {data ? (
+            data.map((item) => (
+              <li key={item.id}>
+                <Card {...item} />
+              </li>
+            ))
+          ) : (
+            <p>Loading...</p>
+          )}
         </ul>
       </div>
     </div>
