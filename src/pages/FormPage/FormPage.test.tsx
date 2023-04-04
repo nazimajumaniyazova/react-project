@@ -20,4 +20,9 @@ describe('FormPage component', () => {
     const alertElement = screen.getByRole('warning');
     expect(alertElement).toBeInTheDocument();
   });
+  it('should not show any error message when the component is loaded', () => {
+    render(<FormPage />);
+    const alertElement = screen.queryByRole('alert');
+    expect(alertElement).not.toBeInTheDocument();
+  });
 });
