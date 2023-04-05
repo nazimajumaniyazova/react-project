@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Card, { ICard } from './Card';
+import Card from './Card';
 
 // const testCards: Array<ICard> = [
 //   {

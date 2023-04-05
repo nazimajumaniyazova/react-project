@@ -1,13 +1,6 @@
 import React from 'react';
 import './Card.css';
-import { IData } from '../Cards/Cards';
-export interface ICard {
-  id?: number;
-  imgUrl: string;
-  name: string;
-  date: string;
-  score: string;
-}
+import { IData } from '../../pages/Home/Home';
 
 function Card({ image, name, episode, gender, origin, species }: IData) {
   return (
