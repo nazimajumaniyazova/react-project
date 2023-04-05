@@ -109,7 +109,7 @@ function Cards() {
               </li>
             ))
           ) : (
-            <p>Loading...</p>
+            <p className="loading">Loading...</p>
           )}
         </ul>
       </div>
