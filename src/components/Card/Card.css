@@ -3,6 +3,7 @@
   background-color: #fff;
   border-radius: 6px;
   overflow: hidden;
+  cursor: pointer;
 }
 .card-img__image {
   width: 100%;

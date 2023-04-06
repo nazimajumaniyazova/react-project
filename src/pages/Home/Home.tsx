@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Cards from '../../components/Cards/Cards';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import CardModal from '../../components/CardModal/CardModal';
 export interface IData {
   id: number;
   name: string;
