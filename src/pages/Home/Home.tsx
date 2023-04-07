@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Cards from '../../components/Cards/Cards';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import CardModal from '../../components/CardModal/CardModal';
 export interface IData {
   id: number;
   name: string;
@@ -17,30 +16,45 @@ export interface IData {
   origin: { name: string; url: string };
 }
 export interface PostIData {
-  info: { count: number; pages: number; next: string; prev: null };
+  info: { count: number; pages: number; next: string | null; prev: string | null };
   results: Array<IData>;
+}
+interface IError {
+  error: string;
 }
 function Home() {
   const [searchedName, setSearchedName] = useState('');
   const [data, setData] = useState<PostIData>();
+  const [error, setError] = useState<IError>();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const input = event.currentTarget.elements[0] as HTMLInputElement;
     setSearchedName(input.value);
   };
   useEffect(() => {
+    setError(undefined);
+    setData(undefined);
     const fetchData = async () => {
       const result = await fetch(`https://rickandmortyapi.com/api/character/?name=${searchedName}`);
       const data = await result.json();
-      setData(data);
-      console.log(data);
+      if (result.ok) {
+        setData(data);
+      } else {
+        setError(data);
+      }
     };
     fetchData();
   }, [searchedName]);
   return (
     <div>
       <SearchBar handleSubmit={handleSubmit} />
-      {data ? <Cards {...data} /> : <p className="loading">Loading...</p>}
+      {error ? (
+        <p className="loading">{error.error}</p>
+      ) : data ? (
+        <Cards {...data} />
+      ) : (
+        <p className="loading">Loading...</p>
+      )}
     </div>
   );
 }
