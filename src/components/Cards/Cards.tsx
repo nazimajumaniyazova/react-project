@@ -1,9 +1,9 @@
 import React from 'react';
 import Card from '../Card/Card';
 import './Cards.css';
-import { PostIData } from '../../pages/Home/Home';
+import { PostICardData } from '../../ts/interfaces/fetchingdata.interface';
 
-function Cards(data: PostIData) {
+function Cards(data: PostICardData) {
   return (
     <div className="cards-section">
       <div className="container">

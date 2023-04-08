@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './CardModal.css';
-import { IData } from '../../pages/Home/Home';
+import { ICardData } from '../../ts/interfaces/fetchingdata.interface';
 interface ICardModalProps {
   setIsModalActive: (arg: boolean) => void;
   cardId: number;
 }
 function CardModal({ setIsModalActive, cardId }: ICardModalProps) {
-  const [cardData, setCardData] = useState<IData>();
+  const [cardData, setCardData] = useState<ICardData>();
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
   useEffect(() => {
     const fetchData = async () => {

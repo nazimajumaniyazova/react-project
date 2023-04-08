@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './Card.css';
-import { IData } from '../../pages/Home/Home';
+import { ICardData } from '../../ts/interfaces/fetchingdata.interface';
 import CardModal from '../CardModal/CardModal';
 
-function Card({ image, name, episode, gender, origin, species, id }: IData) {
+function Card({ image, name, episode, gender, origin, species, id }: ICardData) {
   const [isModalActive, setIsModalActive] = useState<boolean>(false);
   const [cardId, setCardId] = useState<number>(0);
   const handleCardClick = () => {
