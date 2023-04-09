@@ -1,42 +1,48 @@
 import { render, screen } from '@testing-library/react';
 import Card from './Card';
+import { ICardData } from '../../ts/interfaces/fetchingdata.interface';
+const testCards: Array<ICardData> = [
+  {
+    id: 361,
+    name: 'Toxic Rick',
+    status: 'Dead',
+    species: 'Humanoid',
+    type: "Rick's Toxic Side",
+    gender: 'Male',
+    origin: {
+      name: 'Alien Spa',
+      url: 'https://rickandmortyapi.com/api/location/64',
+    },
+    location: {
+      name: 'Earth',
+      url: 'https://rickandmortyapi.com/api/location/20',
+    },
+    image: 'https://rickandmortyapi.com/api/character/avatar/361.jpeg',
+    episode: ['https://rickandmortyapi.com/api/episode/27'],
+    url: 'https://rickandmortyapi.com/api/character/361',
+    created: '2018-01-10T18:20:41.703Z',
+  },
+];
 
-// const testCards: Array<ICard> = [
-//   {
-//     id: 1,
-//     imgUrl: 'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/kuf6dutpsT0vSVehic3EZIqkOBt.jpg',
-//     name: 'Puss in Boots: The Last Wish',
-//     date: 'Dec 07, 2022',
-//     score: '84%',
-//   },
-//   {
-//     id: 2,
-//     imgUrl: 'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/x3PIk93PTbxT88ohfeb26L1VpZw.jpg',
-//     name: 'Prizefighter: The Life of Jem Belcher',
-//     date: 'Jun 30, 2022',
-//     score: '71%',
-//   },
-// ];
-
-// describe('Card component', () => {
-//   test('it renders', () => {
-//     render(<Card {...testCards[0]} />);
-//   });
-//   it('renders props it into the apropriate text', () => {
-//     render(<Card {...testCards[0]} />);
-//     expect(screen.getByText(testCards[0].name)).toBeInTheDocument();
-//     expect(screen.getByText(testCards[0].date)).toBeInTheDocument();
-//     expect(screen.getByText(`Score: ${testCards[0].score}`)).toBeInTheDocument();
-//   });
-//   it('renders a list of product cards', () => {
-//     render(
-//       <>
-//         {testCards.map((card, index) => (
-//           <Card key={index} {...card} />
-//         ))}
-//       </>
-//     );
-//     const scoreElements = screen.getAllByText(/Score:/i);
-//     expect(scoreElements.length).toBe(testCards.length);
-//   });
-// });
+describe('Card component', () => {
+  test('it renders', () => {
+    render(<Card {...testCards[0]} />);
+  });
+  it('renders props it into the apropriate text', () => {
+    render(<Card {...testCards[0]} />);
+    expect(screen.getByText(testCards[0].name)).toBeInTheDocument();
+    expect(screen.getByText(`Origin: ${testCards[0].origin.name}`)).toBeInTheDocument();
+    expect(screen.getByText(`Species: ${testCards[0].species}`)).toBeInTheDocument();
+  });
+  it('renders a list of product cards', () => {
+    render(
+      <>
+        {testCards.map((card, index) => (
+          <Card key={index} {...card} />
+        ))}
+      </>
+    );
+    const scoreElements = screen.getAllByText(/Species:/i);
+    expect(scoreElements.length).toBe(testCards.length);
+  });
+});

@@ -3,6 +3,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import useFetch from '../../hooks/useFetch';
 
 const apiURL = 'https://rickandmortyapi.com/api/character/?name=';
+
 function Home() {
   const { data, isLoading, isError, setUrl } = useFetch(apiURL);
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
