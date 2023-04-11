@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Cards from '../../components/Cards/Cards';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import useFetch from '../../hooks/useFetch';
@@ -11,6 +12,10 @@ function Home() {
     const input = event.currentTarget.elements[0] as HTMLInputElement;
     setUrl(apiURL + input.value);
   };
+  useEffect(() => {
+    const saved = localStorage.getItem('searchV') || '';
+    setUrl(apiURL + saved);
+  });
   return (
     <div>
       <SearchBar handleSubmit={handleSubmit} />
