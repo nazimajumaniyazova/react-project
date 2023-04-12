@@ -17,7 +17,7 @@ function Home() {
     setUrl(apiURL + saved);
   });
   return (
-    <div>
+    <div className="home">
       <SearchBar handleSubmit={handleSubmit} />
       {isError && <p className="loading">{isError.error}</p>}
       {isLoading ? <p className="loading">Loading...</p> : data && <Cards {...data} />}

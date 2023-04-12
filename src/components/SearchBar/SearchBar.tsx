@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
-interface IProps {
+export interface IProps {
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
