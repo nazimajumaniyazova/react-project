@@ -1,0 +1,33 @@
+.card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.card-img__image {
+  width: 100%;
+  height: 100%;
+}
+.card-info {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.card-info > p {
+  margin: 0;
+  padding: 0;
+  text-align: start;
+}
+.card-name {
+  text-align: start;
+  font-weight: 700;
+  color: #000;
+}
+.card-date,
+.card-score {
+  font-size: 1em;
+  color: rgba(0, 0, 0, 0.6);
+}
