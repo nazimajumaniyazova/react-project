@@ -13,7 +13,6 @@ describe('SearchBar', () => {
   test('input field working correctly', async () => {
     render(<SearchBar {...handleSubmit} />);
     const input = screen.getByRole('textbox');
-
     await act(() => userEvent.type(input, 'hello'));
     expect(input).toHaveDisplayValue('hello');
   });

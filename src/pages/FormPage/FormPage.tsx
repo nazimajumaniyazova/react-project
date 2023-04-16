@@ -3,6 +3,12 @@ import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { useState, useEffect } from 'react';
 import WarningModal from '../../components/Modal/WarningModal';
+
+import { store } from '../../store/store';
+export type RootState = ReturnType<typeof store.getState>;
+import { useDispatch, useSelector } from 'react-redux';
+import { increment } from '../../store/reducers/formSlice';
+
 const countries = [
   'USA',
   'UK',
@@ -15,7 +21,7 @@ const countries = [
   'Japan',
   'Austria',
 ];
-interface Idata {
+export interface Idata {
   name: string;
   date: string;
   country: string;
@@ -30,6 +36,7 @@ function FormPage() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isCorrectFormatFile, setIsCorrectFormatFile] = useState(true);
 
+  const dispatch = useDispatch();
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsCorrectFormatFile(true);
     if (e.target.files) {
@@ -54,21 +61,22 @@ function FormPage() {
   } = useForm<Idata>();
 
   const onSubmit = (data: Idata) => {
-    if (!isCorrectFormatFile) {
-      return;
-    }
-    data.image = img;
-    const newDataUser = [...dataUser, { ...data }];
-    setDataUser(newDataUser);
-    setIsModalVisible(true);
-    reset({
-      name: '',
-      date: '',
-      country: '',
-      image: '',
-      genres: [],
-      status: '',
-    });
+    dispatch(increment(data));
+    // if (!isCorrectFormatFile) {
+    //   return;
+    // }
+    // data.image = img;
+    // const newDataUser = [...dataUser, { ...data }];
+    // setDataUser(newDataUser);
+    // setIsModalVisible(true);
+    // reset({
+    //   name: '',
+    //   date: '',
+    //   country: '',
+    //   image: '',
+    //   genres: [],
+    //   status: '',
+    // });
   };
   useEffect(() => {
     setTimeout(() => {
