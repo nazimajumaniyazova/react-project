@@ -1,13 +1,15 @@
 import './FormPage.css';
+
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useAppSelector } from '../../store/store';
+
 import WarningModal from '../../components/Modal/WarningModal';
 
-import { store } from '../../store/store';
-export type RootState = ReturnType<typeof store.getState>;
-import { useDispatch, useSelector } from 'react-redux';
-import { increment } from '../../store/reducers/formSlice';
+import { IFormData } from '../../ts/interfaces/form.interface';
+import { addCard } from '../../store/reducers/formSlice';
 
 const countries = [
   'USA',
@@ -21,22 +23,23 @@ const countries = [
   'Japan',
   'Austria',
 ];
-export interface Idata {
-  name: string;
-  date: string;
-  country: string;
-  status: string;
-  genres: Array<string>;
-  image: string;
-}
 
 function FormPage() {
-  const [dataUser, setDataUser] = useState<Array<Idata>>([]);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<IFormData>();
+
+  const [dataUser, setDataUser] = useState<Array<IFormData>>([]);
   const [img, setImg] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isCorrectFormatFile, setIsCorrectFormatFile] = useState(true);
 
+  const newDataUser: Array<IFormData> = useAppSelector((state) => state.form.cards);
   const dispatch = useDispatch();
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsCorrectFormatFile(true);
     if (e.target.files) {
@@ -53,31 +56,26 @@ function FormPage() {
       }
     }
   };
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<Idata>();
 
-  const onSubmit = (data: Idata) => {
-    dispatch(increment(data));
-    // if (!isCorrectFormatFile) {
-    //   return;
-    // }
-    // data.image = img;
-    // const newDataUser = [...dataUser, { ...data }];
-    // setDataUser(newDataUser);
-    // setIsModalVisible(true);
-    // reset({
-    //   name: '',
-    //   date: '',
-    //   country: '',
-    //   image: '',
-    //   genres: [],
-    //   status: '',
-    // });
+  const onSubmit = (data: IFormData) => {
+    if (!isCorrectFormatFile) {
+      return;
+    }
+    data.image = img;
+    //const newDataUser2 = [...newDataUser, { ...data }];
+    dispatch(addCard({ card: data }));
+    //setDataUser(newDataUser);
+    setIsModalVisible(true);
+    reset({
+      name: '',
+      date: '',
+      country: '',
+      image: '',
+      genres: [],
+      status: '',
+    });
   };
+
   useEffect(() => {
     setTimeout(() => {
       setIsModalVisible(false);
@@ -299,7 +297,7 @@ function FormPage() {
       <div className="cards-section">
         <div className="container">
           <ul className="cards-container">
-            {dataUser.map((item, index) => (
+            {newDataUser.map((item, index) => (
               <li key={index}>
                 <div className="card">
                   <div className="card-img">

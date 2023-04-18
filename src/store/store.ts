@@ -1,20 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counter from './reducers/SearchBarSlice';
 import formReducer from './reducers/formSlice';
-// const rootReducer = combineReducers({
-//   counter,
-// });
-// export const setupStore = () => {
-//   return configureStore({
-//     reducer: rootReducer,
-//   });
-// };
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
 
 export const store = configureStore({
   reducer: {
-    counter: counter,
     form: formReducer,
   },
 });
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispach = typeof store.dispatch;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

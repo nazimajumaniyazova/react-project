@@ -1,31 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { Idata } from '../../pages/FormPage/FormPage';
-interface formState {
-  name: string;
-  date: string;
-  country: string;
-  status: string;
-  genres: Array<string>;
-  image: string;
-}
-const formInitialState: formState = {
-  name: '',
-  date: '',
-  country: '',
-  status: '',
-  genres: [''],
-  image: '',
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IFormData } from '../../ts/interfaces/form.interface';
+import { IFormState } from '../../ts/interfaces/form.interface';
+
+const formInitialState: IFormState = {
+  cards: [],
 };
 export const formSlice = createSlice({
   name: 'form',
   initialState: formInitialState,
   reducers: {
-    increment: (state: Idata) => {
-      console.log(state.name);
-      return state;
+    addCard(state, action: PayloadAction<{ card: IFormData }>) {
+      state.cards.push(action.payload.card);
     },
   },
 });
 
-export const { increment } = formSlice.actions;
+export const { addCard } = formSlice.actions;
 export default formSlice.reducer;
