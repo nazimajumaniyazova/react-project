@@ -3,7 +3,7 @@ import './FormPage.css';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../store/store';
 
 import WarningModal from '../../components/Modal/WarningModal';
@@ -32,7 +32,6 @@ function FormPage() {
     formState: { errors },
   } = useForm<IFormData>();
 
-  const [dataUser, setDataUser] = useState<Array<IFormData>>([]);
   const [img, setImg] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isCorrectFormatFile, setIsCorrectFormatFile] = useState(true);
@@ -62,9 +61,7 @@ function FormPage() {
       return;
     }
     data.image = img;
-    //const newDataUser2 = [...newDataUser, { ...data }];
     dispatch(addCard({ card: data }));
-    //setDataUser(newDataUser);
     setIsModalVisible(true);
     reset({
       name: '',
