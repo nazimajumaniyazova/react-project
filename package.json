@@ -79,7 +79,6 @@
       "!src/pages/Home/Home.tsx",
       "!src/index.tsx",
       "!src/reportWebVitals.ts",
-      "!src/components/Modal/WarningModal.tsx",
       "!src/components/Card/Card.test.tsx",
       "!src/components/CardModal/CardModal.tsx",
       "!src/hooks/UseFetch.ts",
